@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatCheckboxModule, MatListModule, MatToolbar, MatToolbarModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatListModule,
+  MatToolbarModule,
+  MatCardModule,
+  MatMenuModule
+} from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule, } from '@angular/material/sidenav';
 @NgModule({
@@ -8,19 +15,25 @@ import { MatSidenavModule, } from '@angular/material/sidenav';
   imports: [
     CommonModule,
     MatSidenavModule,
+    MatMenuModule,
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule,
+    MatCheckboxModule
   ],
   exports: [
     CommonModule,
     MatSidenavModule,
+    MatMenuModule,
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }

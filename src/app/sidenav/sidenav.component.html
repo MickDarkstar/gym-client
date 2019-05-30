@@ -1,27 +1,37 @@
 <mat-sidenav-container class="app-sidenav-container">
-  <mat-sidenav class="app-sidenav mat-elevation-z10" 
-  #sidenav 
-  [opened]="!isScreenSmall()"
-  [mode]="isScreenSmall() ? 'over' : 'side'" 
-  >
+  <mat-sidenav class="app-sidenav mat-elevation-z10" #sidenav [opened]="!isScreenSmall()"
+    [mode]="isScreenSmall() ? 'over' : 'side'">
     <mat-toolbar color="primary">
       Workouts
     </mat-toolbar>
     <mat-list>
-      <mat-list-item>1</mat-list-item>
-      <mat-list-item>2</mat-list-item>
-      <mat-list-item>3</mat-list-item>
-      <mat-list-item>4</mat-list-item>
+      <mat-list-item>
+        Biceps & Chest
+        <mat-checkbox class="checkbox-workout"></mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        Triceps & Shoulders
+        <mat-checkbox class="checkbox-workout"></mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        Back
+        <mat-checkbox class="checkbox-workout"></mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        Abs
+        <mat-checkbox class="checkbox-workout"></mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        Legs
+        <mat-checkbox class="checkbox-workout"></mat-checkbox>
+      </mat-list-item>
     </mat-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="app-sidenav-content">
     <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
     <div class="router-wrapper">
-        <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </div>
-    <button type="button" mat-button (click)="sidenav.open()">
-      <mat-icon>more_vert</mat-icon>
-    </button>
   </mat-sidenav-content>
 </mat-sidenav-container>

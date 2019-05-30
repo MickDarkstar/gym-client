@@ -5,4 +5,19 @@
   </button>
 
   <span>Pumping Steel Manager</span>
+
+  <span class="fill-remaining-spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="toolbarMenu">
+    <!-- <button type="button" mat-button (click)="sidenav.open()"> -->
+      <mat-icon>more_vert</mat-icon>
+    <!-- </button> -->
+  </button>
+  <mat-menu #toolbarMenu="matMenu">
+    <button mat-menu-item>Workouts</button>
+    <button mat-menu-item>Exercises</button>
+    <button mat-menu-item>History</button>
+    <button mat-menu-item>New Workout</button>
+    <button mat-menu-item>New Exercise</button>
+  </mat-menu>
 </mat-toolbar>

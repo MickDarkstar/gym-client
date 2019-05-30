@@ -1,10 +1,16 @@
 $iconWidth: 56px;
+
+.fill-remaining-spacer {
+  /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
 .sidenav-toggle {
   display: none;
 
   padding: 0;
   margin: 8px;
-  min-width: iconWidth;
+  min-width: $iconWidth;
 
   @media (max-width: 720px) {
     display: flex;
