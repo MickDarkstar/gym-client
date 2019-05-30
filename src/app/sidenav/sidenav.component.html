@@ -1,12 +1,25 @@
 <mat-sidenav-container class="app-sidenav-container">
-  <mat-sidenav class="app-sidenav" #sidenav mode="side" [(opened)]="opened">
-    Sidenav content
+  <mat-sidenav class="app-sidenav mat-elevation-z10" 
+  #sidenav 
+  [opened]="!isScreenSmall()"
+  [mode]="isScreenSmall() ? 'over' : 'side'" 
+  >
+    <mat-toolbar color="primary">
+      Workouts
+    </mat-toolbar>
+    <mat-list>
+      <mat-list-item>1</mat-list-item>
+      <mat-list-item>2</mat-list-item>
+      <mat-list-item>3</mat-list-item>
+      <mat-list-item>4</mat-list-item>
+    </mat-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="app-sidenav-content">
-    <app-toolbar></app-toolbar>
-    <router-outlet></router-outlet>
-    <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
+    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <div class="router-wrapper">
+        <router-outlet></router-outlet>
+    </div>
     <button type="button" mat-button (click)="sidenav.open()">
       <mat-icon>more_vert</mat-icon>
     </button>
