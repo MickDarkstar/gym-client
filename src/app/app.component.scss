@@ -1,0 +1,13 @@
+.flex-container {
+    display:flex;
+    flex-flow: row wrap;
+}
+.flex-item {
+    width: 200px;
+    height: 150px;
+    background: tomato;
+    color:white;
+    font-size: 3em;
+    text-align: center;
+    line-height: 150px;
+}
