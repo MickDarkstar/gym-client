@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+
+import { Routes, RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
-import { MaterialModule } from './shared/modules/material.module';
+
+
+const routes: Routes = [
+  { path: 'start', loadChildren: './training-manager/training-manager.module#TrainingManagerModule' },
+  { path: '**', redirectTo: 'start' }
+];
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    MaterialModule,
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
