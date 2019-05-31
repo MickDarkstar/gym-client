@@ -3,8 +3,9 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
 
 ## Development server
-För att slipe Invalid host header origin etc. Disconnected:
+För att slippa Invalid host header origin etc. Disconnected:
 `ng serve --disable-host-check`
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
@@ -13,6 +14,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
+Build for github pages with correct base-href:
+`ng build --prod --base-href https://mickdarkstar.github.io/pumping-steel/`
+Deploy to github pages:
+`ngh`
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
