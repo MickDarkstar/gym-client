@@ -1,26 +1,30 @@
 <div class="flex-container" fxLayout.cs="column">
-  <mat-card class="flex-item">
-    {{ userSource }}
-  </mat-card>
-  <mat-card class="flex-item">
-    2
-  </mat-card>
-  <mat-card class="flex-item">
-    3
-  </mat-card>
-  <mat-card class="flex-item">
-    4
-  </mat-card>
-  <mat-card class="flex-item">
-    1
-  </mat-card>
-  <mat-card class="flex-item">
-    2
-  </mat-card>
-  <mat-card class="flex-item">
-    3
-  </mat-card>
-  <mat-card class="flex-item">
-    4
-  </mat-card>
+  <div *ngFor="let exercise of dataSource">
+    <mat-card class="flex-item">
+      <mat-card-header>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title>{{ exercise.name }}</mat-card-title>
+        <mat-card-subtitle>{{ exercise.type }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>*</button>
+        <button mat-button>Queue for workout</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
+
+<!-- <mat-card-title>	Card title
+    <mat-card-subtitle>	Card subtitle
+    <mat-card-content>	Primary card content. Intended for blocks of text
+    <img mat-card-image>	Card image. Stretches the image to the container width
+    <mat-card-actions>	Container for buttons at the bottom of the card
+    <mat-card-footer>	Section anchored to the bottom of the card -->

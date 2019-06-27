@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Exercise } from '../shared/models/exercise.model';
+import { ApiResponse } from '../shared/models/response.model';
 
 @Component({
   selector: 'app-main-content',
@@ -10,9 +12,9 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./main-content.component.scss']
 })
 export class MainContentComponent implements OnInit {
-  private url = 'http://localhost/gym-app-server/api/controllers/entry/'
+  private url = 'http://localhost/gym-app-server/api/controllers/exercises/'
 
-  private dataSource = new Subject<any>()
+  private dataSource: Exercise[]
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -28,7 +30,7 @@ export class MainContentComponent implements OnInit {
           withCredentials: false
         }
 
-        this.http.get<any>(this.url + 'get.php', httpOptions)
+        this.http.get<ApiResponse>(this.url + 'get.php', httpOptions)
           .pipe(map(result => {
             this.dataSource = result.data
           }))
