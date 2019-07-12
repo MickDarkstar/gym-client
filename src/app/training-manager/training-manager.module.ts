@@ -10,11 +10,17 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CommonModule } from '@angular/common';
 
+import { CurrentEntryComponent } from '../entries/current-entry/current-entry.component';
+import { ExercisesComponent } from '../exercises/exercises.component';
+import { EntriesComponent } from '../entries/entries.component';
+import { EditExerciseComponent } from '../exercises/edit-exercise/edit-exercise.component';
+import { CreateExerciseComponent } from '../exercises/create-exercise/create-exercise.component';
 
 const routes: Routes = [
   {
     path: '', component: TrainingManagerComponent,
     children: [
+      { path: 'current-entry', component: CurrentEntryComponent },
       { path: '', component: MainContentComponent }
     ]
   },
@@ -23,7 +29,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [TrainingManagerComponent, ToolbarComponent, MainContentComponent, SidenavComponent],
+  declarations: [TrainingManagerComponent, ToolbarComponent, MainContentComponent, SidenavComponent, CurrentEntryComponent],
   imports: [
     CommonModule,
     MaterialModule,

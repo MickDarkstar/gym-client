@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Exercise } from '../shared/models/exercise.model';
 import { ApiResponse } from '../shared/models/response.model';
+import { WorkoutService } from '../shared/services/workout.service';
 
 @Component({
   selector: 'app-main-content',
@@ -16,7 +17,7 @@ export class MainContentComponent implements OnInit {
 
   private dataSource: Exercise[]
 
-  constructor(private authService: AuthService, private http: HttpClient) { }
+  constructor(private authService: AuthService, private http: HttpClient, private workoutService: WorkoutService) { }
 
   ngOnInit() {
     this.authService.currentUser.subscribe(() => {
@@ -39,4 +40,7 @@ export class MainContentComponent implements OnInit {
     })
   }
 
+  addExercise(exercise: Exercise) {
+    this.workoutService.createEntryDetail(exercise)
+  }
 }

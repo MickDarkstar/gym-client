@@ -8,9 +8,11 @@
 
   <span class="fill-remaining-spacer"></span>
   <button mat-button *ngIf="!loggedIn" (click)="login()">Login</button>
-  <span *ngIf="loggedIn">{{ userName }} derp</span>
+  <span *ngIf="loggedIn" routerLink="current-entry" routerLinkActive="active">
+      {{ userName }}
+  </span>
   <button mat-button [matMenuTriggerFor]="toolbarMenu">
-      <mat-icon>more_vert</mat-icon>
+    <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #toolbarMenu="matMenu">
     <button mat-menu-item>Workouts</button>

@@ -1,6 +1,6 @@
 .flex-container {
   display: flex;
-  // flex-flow: row wrap;
+  flex-flow: row wrap;
 
   justify-content: space-around;
 }
@@ -14,14 +14,15 @@
 .flex-item {
   width: 158px;
   height: auto;
+  // min-height: 158px;
   margin-top: 5px;
   color: white;
   font-size: 1em;
 }
 
-.mat-card-title{
+.mat-card-title {
   font-size: 16px;
 }
-.mat-card-subtitle{
+.mat-card-subtitle {
   font-size: 14px;
 }

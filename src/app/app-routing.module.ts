@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+// Va något knas med att köra lazy loading för denna module?
 const routes: Routes = [
   { path: 'start', loadChildren: './training-manager/training-manager.module#TrainingManagerModule' },
   { path: '**', redirectTo: 'start' }
