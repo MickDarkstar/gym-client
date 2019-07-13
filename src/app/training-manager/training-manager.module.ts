@@ -11,6 +11,8 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CommonModule } from '@angular/common';
 
 import { CurrentEntryComponent } from '../entries/current-entry/current-entry.component';
+import { EntryDetailEditComponent } from '../entries/current-entry/entry-detail-edit.component';
+
 import { ExercisesComponent } from '../exercises/exercises.component';
 import { EntriesComponent } from '../entries/entries.component';
 import { EditExerciseComponent } from '../exercises/edit-exercise/edit-exercise.component';
@@ -29,7 +31,14 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [TrainingManagerComponent, ToolbarComponent, MainContentComponent, SidenavComponent, CurrentEntryComponent],
+  declarations: [
+    TrainingManagerComponent,
+    ToolbarComponent,
+    MainContentComponent,
+    SidenavComponent,
+    CurrentEntryComponent,
+    EntryDetailEditComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,

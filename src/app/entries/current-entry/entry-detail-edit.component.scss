@@ -1,0 +1,20 @@
+:host{
+    .container {
+        display: flex;
+        flex-flow: row wrap;
+      
+        justify-content: space-around;
+    }
+    
+    mat-form-field {
+      width: 15%;
+    }
+    mat-card-content {
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+      
+        justify-content: space-around;
+    }
+}
+

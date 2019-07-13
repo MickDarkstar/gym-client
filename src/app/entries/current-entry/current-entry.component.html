@@ -1,25 +1,6 @@
-<div *ngFor="let entryDetail of currentEntry.entryDetails">
-  <!-- <mat-form-field class="example-form-field">
-        <input matInput type="text" placeholder="Clearable input" [(ngModel)]="value">
-        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field> -->
-  <span>
-    <p>
-      {{ entryDetail.exercise.name }}
-    </p>
-  </span>
-  <mat-form-field>
-    <input matInput placeholder="Weight">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Reps">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Sets">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Rest">
-  </mat-form-field>
+<div *ngIf="currentEntry">
+  <div *ngFor="let entryDetail of currentEntry.entryDetails" class="pd-5">
+    <app-entry-detail-edit [entryDetail]="entryDetail" (output)="save($event)">
+    </app-entry-detail-edit>
+  </div>
 </div>

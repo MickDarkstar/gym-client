@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkoutService } from 'src/app/shared/services/workout.service';
 import { Entry } from 'src/app/shared/models/entry.model';
+import { EntryDetail } from 'src/app/shared/models/entry-detail.model';
 
 @Component({
   selector: 'app-current-entry',
@@ -9,12 +10,15 @@ import { Entry } from 'src/app/shared/models/entry.model';
 })
 export class CurrentEntryComponent implements OnInit {
   currentEntry: Entry
-  value = 'Clear me';
   constructor(private workoutService: WorkoutService) { }
 
   ngOnInit() {
     this.workoutService.getCurrentEntry().subscribe(result => {
       this.currentEntry = result
     })
+  }
+
+  save(entryDetail: EntryDetail) {
+    console.log(entryDetail.exercise.name)
   }
 }
