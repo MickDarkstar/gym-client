@@ -18,7 +18,15 @@ export class CurrentEntryComponent implements OnInit {
     })
   }
 
-  save(entryDetail: EntryDetail) {
-    console.log(entryDetail.exercise.name)
+  saveEntryDetail(entryDetail: EntryDetail) {
+    this.workoutService.saveEntryDetail(entryDetail).subscribe(() => {
+      console.log('Entry detail saved')
+    })
+  }
+
+  saveEntry(entry: Entry) {
+    this.workoutService.saveEntry(entry).subscribe(() => {
+      console.log('Entry saved')
+    })
   }
 }

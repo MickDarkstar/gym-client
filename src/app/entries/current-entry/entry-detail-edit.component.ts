@@ -10,13 +10,15 @@ export class EntryDetailEditComponent implements OnInit {
   @Input() entryDetail: EntryDetail
   @Output() output = new EventEmitter()
   public done = false
+  public entryDetailToSave: EntryDetail = null
   constructor() { }
 
   ngOnInit() {
+    this.entryDetailToSave = this.entryDetail
   }
 
   save() {
-    this.output.emit(this.entryDetail)
+    this.output.emit(this.entryDetailToSave)
     this.done = true
   }
 }

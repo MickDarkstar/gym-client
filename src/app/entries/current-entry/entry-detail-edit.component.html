@@ -15,10 +15,10 @@
   </mat-card-header>
   <mat-card-content>
     <mat-form-field>
-      <input matInput (ngModel)="entryDetail.weight" placeholder="Weight">
+      <input matInput [(ngModel)]="entryDetailToSave.weight" placeholder="Weight">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Reps">
+      <input matInput [(ngModel)]="entryDetailToSave.reps" placeholder="Reps">
     </mat-form-field>
     <span>
       <p>
@@ -26,10 +26,10 @@
       </p>
     </span>
     <mat-form-field>
-      <input matInput placeholder="Sets">
+      <input matInput [(ngModel)]="entryDetailToSave.sets" placeholder="Sets">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Rest">
+      <input matInput [(ngModel)]="entryDetailToSave.rest" placeholder="Rest">
     </mat-form-field>
   </mat-card-content>
   <mat-card-actions>
