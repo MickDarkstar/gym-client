@@ -12,17 +12,18 @@ import { CommonModule } from '@angular/common';
 
 import { CurrentEntryComponent } from '../entries/current-entry/current-entry.component';
 import { EntryDetailEditComponent } from '../entries/current-entry/entry-detail-edit.component';
+import { CreateExerciseComponent } from '../exercises/create-exercise/create-exercise.component';
 
 import { ExercisesComponent } from '../exercises/exercises.component';
 import { EntriesComponent } from '../entries/entries.component';
 import { EditExerciseComponent } from '../exercises/edit-exercise/edit-exercise.component';
-import { CreateExerciseComponent } from '../exercises/create-exercise/create-exercise.component';
 
 const routes: Routes = [
   {
     path: '', component: TrainingManagerComponent,
     children: [
       { path: 'current-entry', component: CurrentEntryComponent },
+      { path: 'create-exercise', component: CreateExerciseComponent },
       { path: '', component: MainContentComponent }
     ]
   },
@@ -37,7 +38,8 @@ const routes: Routes = [
     MainContentComponent,
     SidenavComponent,
     CurrentEntryComponent,
-    EntryDetailEditComponent
+    EntryDetailEditComponent,
+    CreateExerciseComponent
   ],
   imports: [
     CommonModule,

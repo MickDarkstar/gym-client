@@ -20,6 +20,22 @@ export class MainContentComponent implements OnInit {
   constructor(private authService: AuthService, private http: HttpClient, private workoutService: WorkoutService) { }
 
   ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem('id_token')
+        }),
+        withCredentials: false
+      }
+
+      this.http.get<ApiResponse>(this.url + 'get.php', httpOptions)
+        .pipe(map(result => {
+          this.dataSource = result.data
+        }))
+        .subscribe()
+    }
     this.authService.currentUser.subscribe(() => {
       if (this.authService.isLoggedIn()) {
 
