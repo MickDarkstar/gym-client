@@ -10,7 +10,7 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs'
 })
 export class AuthService {
   private userSource = new Subject<User>()
-  private url = 'http://localhost/gym-app-server/api/controllers/auth/'
+  private url = 'http://localhost/mickes-boilerplates/jwt-rest-api/login'
   currentUser = this.userSource.asObservable()
 
   constructor(private http: HttpClient) { }
@@ -18,38 +18,19 @@ export class AuthService {
   login() {
     const email = 'micke@tempory.org'
     const password = 'test'
-    return this.http.post<any>(this.url + 'login.php', { email, password })
+    return this.http.post<any>(this.url, { email, password })
       .pipe(map(authResult => {
-        if (authResult) {
-          this.setSession(authResult)
-          return authResult
+        if (authResult.data) {
+          const user = new User()
+          user.firstname = authResult.data.firstname
+          user.lastname = authResult.data.lastname
+          user.email = authResult.data.email
+
+          this.userSource.next(user)
+
+          this.setSession(authResult.data)
+          return authResult.data
         }
-      })
-      )
-  }
-
-  setUserInfo() {
-    const jwt = localStorage.getItem('id_token')
-    if (jwt) {
-      this.validateToken(jwt)
-        .pipe(take(1))
-        .subscribe((userInfo: User) => {
-          this.userSource.next(userInfo)
-        })
-    }
-  }
-
-  validateToken(jwt: string): Observable<User> {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'Authorization': jwt
-    //   }),
-    //   withCredentials: false
-    // }
-    return this.http.post<any>(this.url + 'validtoken.php', { jwt })
-      .pipe(map(result => {
-        return result.data
       })
       )
   }

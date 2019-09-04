@@ -1,4 +1,6 @@
-# GymLogger
+# Gym app - Angular SPA for consuming API with jwt token authentication
+
+© 2019 Mikael Fehrm, micke@tempory.org
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
 

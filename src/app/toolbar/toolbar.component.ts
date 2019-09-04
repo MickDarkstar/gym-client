@@ -26,7 +26,6 @@ export class ToolbarComponent implements OnInit {
     this.authService.login()
       .pipe(take(1))
       .subscribe(() => {
-        this.authService.setUserInfo()
         this.loggedIn = this.authService.isLoggedIn()
       })
   }
