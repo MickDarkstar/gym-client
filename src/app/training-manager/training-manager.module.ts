@@ -17,13 +17,19 @@ import { CreateExerciseComponent } from '../exercises/create-exercise/create-exe
 import { ExercisesComponent } from '../exercises/exercises.component';
 import { EntriesComponent } from '../entries/entries.component';
 import { EditExerciseComponent } from '../exercises/edit-exercise/edit-exercise.component';
+import { AuthGuard } from '../_guards/auth.guards';
 
 const routes: Routes = [
   {
     path: '', component: TrainingManagerComponent,
     children: [
-      { path: 'current-entry', component: CurrentEntryComponent },
-      { path: 'create-exercise', component: CreateExerciseComponent },
+      { path: 'current-entry', component: CurrentEntryComponent, canActivate: [AuthGuard] },
+      { path: 'edit-entry', component: EntryDetailEditComponent, canActivate: [AuthGuard] },
+      { path: 'exercises', component: ExercisesComponent, canActivate: [AuthGuard] },
+      { path: 'create-exercise', component: CreateExerciseComponent, canActivate: [AuthGuard] },
+      { path: 'edit-exercise', component: EditExerciseComponent, canActivate: [AuthGuard] },
+      { path: 'entries', component: EntriesComponent, canActivate: [AuthGuard] },
+
       { path: '', component: MainContentComponent }
     ]
   },
@@ -38,8 +44,11 @@ const routes: Routes = [
     MainContentComponent,
     SidenavComponent,
     CurrentEntryComponent,
+    ExercisesComponent,
+    CreateExerciseComponent,
+    EditExerciseComponent,
     EntryDetailEditComponent,
-    CreateExerciseComponent
+    EntriesComponent,
   ],
   imports: [
     CommonModule,

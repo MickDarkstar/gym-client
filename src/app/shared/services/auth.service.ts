@@ -56,7 +56,7 @@ export class AuthService {
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
     localStorage.removeItem('currentUser')
-
+    this.currentUserSubject.next(null);
     return true
   }
 
