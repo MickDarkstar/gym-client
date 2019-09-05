@@ -8,10 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './shared/services/auth.service';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from './shared/modules/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 
 // const routes: Routes = [
-//   { path: 'start', loadChildren: './training-manager/training-manager.module#TrainingManagerModule' },
-//   { path: '**', redirectTo: 'start' }
+//   { path: 'training', loadChildren: './training-manager/training-manager.module#TrainingManagerModule' },
+//   { path: '**', redirectTo: 'training' }
 // ];
 
 @NgModule({
@@ -23,7 +27,11 @@ import { AuthService } from './shared/services/auth.service';
     BrowserAnimationsModule,
     AppRoutingModule,
     // RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    MaterialModule,
+    FlexLayoutModule,
+    FormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

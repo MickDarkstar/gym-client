@@ -5,9 +5,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '../shared/modules/material.module';
 import { TrainingManagerComponent } from './training-manager.component';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { MainContentComponent } from '../main-content/main-content.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CommonModule } from '@angular/common';
 
 import { CurrentEntryComponent } from '../entries/current-entry/current-entry.component';

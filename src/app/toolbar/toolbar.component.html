@@ -7,18 +7,22 @@
   <!-- <span>Pumping Steel Manager</span> -->
 
   <span class="fill-remaining-spacer"></span>
-  <button mat-button *ngIf="!loggedIn" (click)="login()">Login</button>
+  <span><button mat-button *ngIf="!loggedIn" (click)="login()">
+      Login
+    </button>
+  </span>
   <span *ngIf="loggedIn" routerLink="current-entry" routerLinkActive="active">
-      {{ userName }}
+    {{ userName }}
   </span>
   <button mat-button [matMenuTriggerFor]="toolbarMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #toolbarMenu="matMenu">
     <button mat-menu-item readonly>Workouts</button>
-    <button mat-menu-item routerLink="start" routerLinkActive="active">Exercises</button>
+    <button mat-menu-item routerLink="exercises" routerLinkActive="active">Exercises</button>
     <button mat-menu-item readonly>History</button>
     <button mat-menu-item readonly>New Workout</button>
     <button mat-menu-item routerLink="create-exercise" routerLinkActive="active">New Exercise</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
   </mat-menu>
 </mat-toolbar>

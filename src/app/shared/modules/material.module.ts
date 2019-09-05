@@ -8,7 +8,8 @@ import {
   MatCardModule,
   MatMenuModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule, } from '@angular/material/sidenav';
@@ -25,7 +26,8 @@ import { MatSidenavModule, } from '@angular/material/sidenav';
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { MatSidenavModule, } from '@angular/material/sidenav';
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

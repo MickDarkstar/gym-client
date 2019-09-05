@@ -10,41 +10,66 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs'
 })
 export class AuthService {
   private userSource = new Subject<User>()
-  private url = 'http://localhost/mickes-boilerplates/jwt-rest-api/login'
+  private url = 'http://localhost/gym-api/login'
   currentUser = this.userSource.asObservable()
 
   constructor(private http: HttpClient) { }
 
-  login() {
-    const email = 'micke@tempory.org'
-    const password = 'test'
+  login(email: string, password: string) {
     return this.http.post<any>(this.url, { email, password })
       .pipe(map(authResult => {
         if (authResult.data) {
-          const user = new User()
-          user.firstname = authResult.data.firstname
-          user.lastname = authResult.data.lastname
-          user.email = authResult.data.email
 
-          this.userSource.next(user)
+          return this.setSession(authResult.data).subscribe(() => {
+            const user = new User()
+            user.id = authResult.data.user.id
+            user.firstname = authResult.data.user.firstname
+            user.lastname = authResult.data.user.lastname
+            user.email = authResult.data.user.email
+            this.userSource.next(user)
 
-          this.setSession(authResult.data)
-          return authResult.data
+            return user
+          })
         }
       })
       )
   }
 
-  private setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresIn, 'second')
+  public setUserFromSession() {
+    if (localStorage.getItem('appUserId')) {
+      const user = new User()
+      user.id = Number(localStorage.getItem('appUserId'))
+      user.firstname = localStorage.getItem('appUserFirstname')
+      user.lastname = localStorage.getItem('appUserLastname')
+      user.email = localStorage.getItem('appUserEmail')
+      this.userSource.next(user)
+    }
+  }
 
-    localStorage.setItem('id_token', authResult.jwt)
+  private setSession(authResultData): Observable<boolean> {
+    const expiresAt = moment().add(authResultData.expiresIn, 'second')
+
+    localStorage.setItem('id_token', authResultData.jwt)
+
+    localStorage.setItem('appUserId', authResultData.user.id)
+    localStorage.setItem('appUserFirstname', authResultData.user.firstname)
+    localStorage.setItem('appUserLastname', authResultData.user.lastname)
+    localStorage.setItem('appUserEmail', authResultData.user.email)
+
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()))
+    return new Subject<true>();
   }
 
   logout() {
+    localStorage.removeItem('appUserId')
+    localStorage.removeItem('appUserFirstname')
+    localStorage.removeItem('appUserLastname')
+    localStorage.removeItem('appUserEmail')
+
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
+    this.userSource.next()
+    return true
   }
 
   public isLoggedIn() {
