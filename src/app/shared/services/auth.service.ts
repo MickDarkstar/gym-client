@@ -9,11 +9,23 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs'
   providedIn: 'root'
 })
 export class AuthService {
-  private userSource = new Subject<User>()
   private url = 'http://localhost/gym-api/login'
-  currentUser = this.userSource.asObservable()
 
-  constructor(private http: HttpClient) { }
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
+  public get currentIdToken(): string {
+    return localStorage.getItem('id_token')
+  }
 
   login(email: string, password: string) {
     return this.http.post<any>(this.url, { email, password })
@@ -21,54 +33,30 @@ export class AuthService {
         if (authResult.data) {
 
           return this.setSession(authResult.data).subscribe(() => {
-            const user = new User()
-            user.id = authResult.data.user.id
-            user.firstname = authResult.data.user.firstname
-            user.lastname = authResult.data.user.lastname
-            user.email = authResult.data.user.email
-            this.userSource.next(user)
-
-            return user
+            return this.currentUserValue
           })
         }
       })
       )
   }
 
-  public setUserFromSession() {
-    if (localStorage.getItem('appUserId')) {
-      const user = new User()
-      user.id = Number(localStorage.getItem('appUserId'))
-      user.firstname = localStorage.getItem('appUserFirstname')
-      user.lastname = localStorage.getItem('appUserLastname')
-      user.email = localStorage.getItem('appUserEmail')
-      this.userSource.next(user)
-    }
-  }
-
   private setSession(authResultData): Observable<boolean> {
     const expiresAt = moment().add(authResultData.expiresIn, 'second')
 
+    // Kan tas bort senare eller flyttas till user
     localStorage.setItem('id_token', authResultData.jwt)
-
-    localStorage.setItem('appUserId', authResultData.user.id)
-    localStorage.setItem('appUserFirstname', authResultData.user.firstname)
-    localStorage.setItem('appUserLastname', authResultData.user.lastname)
-    localStorage.setItem('appUserEmail', authResultData.user.email)
-
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()))
+    localStorage.setItem('currentUser', JSON.stringify(authResultData.user))
+    this.currentUserSubject.next(authResultData.user)
+
     return new Subject<true>();
   }
 
   logout() {
-    localStorage.removeItem('appUserId')
-    localStorage.removeItem('appUserFirstname')
-    localStorage.removeItem('appUserLastname')
-    localStorage.removeItem('appUserEmail')
-
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
-    this.userSource.next()
+    localStorage.removeItem('currentUser')
+
     return true
   }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
-import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,17 +12,14 @@ export class ToolbarComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter()
   loggedIn = false
   userName = ''
-  
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.authService.currentUser.subscribe(user => {
-      if (user) {
-        this.userName = user.firstname + ' ' + user.lastname
-        this.loggedIn = this.authService.isLoggedIn()
-      }
-    })
-    this.authService.setUserFromSession()
+    if (this.authService.isLoggedIn()) {
+      this.userName = this.authService.currentUserValue.firstname + ' ' + this.authService.currentUserValue.lastname
+      this.loggedIn = true
+    }
   }
 
   login() {

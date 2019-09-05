@@ -3,29 +3,31 @@
     <mat-card-header>
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      <form class="login-form">
-        <table class="full-width" cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field class="full-width">
-                <input matInput placeholder="E-mail" [(ngModel)]="email" name="email" required>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="full-width">
-                <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
-      </form>
-      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button (click)="login()" color="primary">Login</button>
-    </mat-card-actions>
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
+      <mat-card-content>
+        <div class="form-group">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="E-mail" formControlName="email" name="email" required>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">E-mail is required</div>
+            </div>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <mat-spinner [style.display]="loading ? 'inline' : 'none'"></mat-spinner>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button [disabled]="loading" color="primary">Login</button>
+        <!-- <a routerLink="/register" class="btn btn-link">Register</a> -->
+      </mat-card-actions>
+    </form>
   </mat-card>
 </div>
