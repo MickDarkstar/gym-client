@@ -13,6 +13,7 @@ export class ToolbarComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter()
   loggedIn = false
   userName = ''
+  
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {

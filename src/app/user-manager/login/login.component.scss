@@ -1,0 +1,19 @@
+.mat-card {
+  margin-top: 16px;
+  width: 30%;
+  min-width: 250px;
+  height: 204px;
+  text-align: center;
+  align-self: center; 
+}
+
+.flex-container {
+  display: flex;
+  background: #4e4e4e;
+  justify-content: center;
+  height: 100%;
+}
+
+.full-width {
+    width: 100%;
+}

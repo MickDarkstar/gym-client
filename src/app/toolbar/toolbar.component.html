@@ -7,10 +7,9 @@
   <!-- <span>Pumping Steel Manager</span> -->
 
   <span class="fill-remaining-spacer"></span>
-  <span><button mat-button *ngIf="!loggedIn" (click)="login()">
-      Login
-    </button>
-  </span>
+  <button mat-button *ngIf="!loggedIn" (click)="login()">
+    Login
+  </button>
   <span *ngIf="loggedIn" routerLink="current-entry" routerLinkActive="active">
     {{ userName }}
   </span>
