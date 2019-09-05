@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    // this.returnUrl = this.route.snapshot.queryParams[this.returnUrl] || '/';
+    // Fungerar inte...
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
@@ -56,9 +55,5 @@ export class LoginComponent implements OnInit {
           // this.alertService.error(error);
           this.loading = false
         })
-    // .subscribe(() => {
-    //   this.loading = true;
-    //   this.router.navigate(['training'])
-    // })
   }
 }
