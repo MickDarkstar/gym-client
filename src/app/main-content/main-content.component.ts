@@ -13,7 +13,7 @@ import { WorkoutService } from '../shared/services/workout.service';
   styleUrls: ['./main-content.component.scss']
 })
 export class MainContentComponent implements OnInit {
-  private url = 'http://localhost/gym-app-server/api/controllers/exercises/'
+  private url = 'http://localhost/gym-api/exercises/'
 
   private dataSource: Exercise[]
 
@@ -22,6 +22,7 @@ export class MainContentComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
 
+      // Todo: move to interceptor
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -30,7 +31,7 @@ export class MainContentComponent implements OnInit {
         withCredentials: false
       }
 
-      this.http.get<ApiResponse>(this.url + 'get.php', httpOptions)
+      this.http.get<ApiResponse>(this.url, httpOptions)
         .pipe(map(result => {
           this.dataSource = result.data
         }))

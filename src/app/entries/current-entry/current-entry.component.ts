@@ -13,9 +13,9 @@ export class CurrentEntryComponent implements OnInit {
   constructor(private workoutService: WorkoutService) { }
 
   ngOnInit() {
-    this.workoutService.getCurrentEntry().subscribe(result => {
-      this.currentEntry = result
-    })
+    // this.workoutService.getCurrentEntry().subscribe(result => {
+    //   this.currentEntry = result
+    // })
   }
 
   saveEntryDetail(entryDetail: EntryDetail) {
