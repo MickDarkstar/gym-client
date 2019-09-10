@@ -12,7 +12,8 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './shared/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { ApiInterceptor } from './_helpers/api.interceptor';
+import { TokenInterceptor } from './_helpers/token.interceptor';
 
 // const routes: Routes = [
 //   { path: 'training', loadChildren: './training-manager/training-manager.module#TrainingManagerModule' },
@@ -36,7 +37,8 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
   ],
   providers: [
     AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

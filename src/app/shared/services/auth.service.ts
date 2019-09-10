@@ -9,8 +9,6 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs'
   providedIn: 'root'
 })
 export class AuthService {
-  private url = 'http://localhost/gym-api/login'
-
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -28,7 +26,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(this.url, { email, password })
+    return this.http.post<any>('login', { email, password })
       .pipe(map(authResult => {
         if (authResult.data) {
 
@@ -43,7 +41,7 @@ export class AuthService {
   private setSession(authResultData): Observable<boolean> {
     const expiresAt = moment().add(authResultData.expiresIn, 'second')
 
-    // Kan tas bort senare eller flyttas till user
+    // Kan tas bort senare eller flyttas till currentUser
     localStorage.setItem('id_token', authResultData.jwt)
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()))
     localStorage.setItem('currentUser', JSON.stringify(authResultData.user))
