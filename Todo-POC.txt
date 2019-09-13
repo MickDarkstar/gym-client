@@ -1,6 +1,10 @@
 *CRUD Exercises
 	-Ej delete på använda exercises
-*Köa och avköa Exercises i dagens träningspass
+*Exercises i dagens träningspass
+	- Köa/lägg till
+	- Sortera ordning
+	- Avköa/ ta bort
+	- Markera som "Done", vid update skall alltså en flagga sättas. Även möjlighet att ångra detta vid missclicks
 	-Dagens träningspass sätts utifrån dagens datum, utveckla detta senare till att kunna ha flera pass per dag. Men börja med ett per dag.
 *Ta bort träningspass
 	-
