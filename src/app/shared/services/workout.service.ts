@@ -19,8 +19,8 @@ export class WorkoutService {
     entryDetail.exerciseId = exercise.id
     this.http.post<ApiResponse>('entrydetails', entryDetail)
       .pipe(map(result => {
-        if (result.message === 'saved') {
-          alert('Entrydetail saved')
+        if (result.message) {
+          // Todo: toaster(result.message);
         }
       })
       ).subscribe()

@@ -1,0 +1,12 @@
+*CRUD Exercises
+	-Ej delete på använda exercises
+*Köa och avköa Exercises i dagens träningspass
+	-Dagens träningspass sätts utifrån dagens datum, utveckla detta senare till att kunna ha flera pass per dag. Men börja med ett per dag.
+*Ta bort träningspass
+	-
+*Klona träningspass
+	- Nulla "Done" värdet för alla exercises och behålla senast körda värden.
+	
+Deploya testversion till:
+	- DB till one.com
+	- Klient till firebase, sätt releasevariabler genom fulhack bara för att få igång appen

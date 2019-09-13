@@ -1,4 +1,4 @@
-export class ApiResponse {
+export interface ApiResponse {
     message: string
     data: any
 }
