@@ -3,10 +3,11 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthService, private router: Router) { }
+    constructor(private authenticationService: AuthService, private router: Router, private toast: ToastrService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const currentUser = this.authenticationService.currentUser;
@@ -17,10 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
                     Authorization: `${token}`
                 }
             });
-        } else {
-            this.router.navigate(['login']);
         }
-
         return next.handle(request);
     }
 }

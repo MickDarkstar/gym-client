@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-// import { Routes, RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './shared/services/auth.service';
@@ -15,11 +14,6 @@ import { FormsModule } from '@angular/forms';
 import { ApiInterceptor } from './_helpers/api.interceptor';
 import { TokenInterceptor } from './_helpers/token.interceptor';
 
-// const routes: Routes = [
-//   { path: 'training', loadChildren: './training-manager/training-manager.module#TrainingManagerModule' },
-//   { path: '**', redirectTo: 'training' }
-// ];
-
 @NgModule({
   declarations: [
     AppComponent
@@ -28,7 +22,12 @@ import { TokenInterceptor } from './_helpers/token.interceptor';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    // RouterModule.forRoot(routes),
+    ToastrModule.forRoot(
+      {
+        autoDismiss: true,
+        tapToDismiss: true
+      }
+    ),
     HttpClientModule,
     CommonModule,
     MaterialModule,

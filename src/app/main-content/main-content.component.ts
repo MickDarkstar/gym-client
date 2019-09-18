@@ -4,7 +4,7 @@ import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Exercise } from '../shared/models/exercise.model';
-import { ApiResponse } from '../shared/models/response.model';
+import { ApiResponse } from '../shared/models/api-response.model';
 import { WorkoutService } from '../shared/services/workout.service';
 
 @Component({

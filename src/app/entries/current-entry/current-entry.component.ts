@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { WorkoutService } from 'src/app/shared/services/workout.service';
 import { Entry } from 'src/app/shared/models/entry.model';
 import { EntryDetail } from 'src/app/shared/models/entry-detail.model';
+import { take } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-current-entry',
@@ -10,23 +12,21 @@ import { EntryDetail } from 'src/app/shared/models/entry-detail.model';
 })
 export class CurrentEntryComponent implements OnInit {
   currentEntry: Entry
-  constructor(private workoutService: WorkoutService) { }
+  constructor(private workoutService: WorkoutService, private toast: ToastrService) { }
 
   ngOnInit() {
-    this.workoutService.getCurrentEntry().subscribe(result => {
-      this.currentEntry = result
-    })
+    this.workoutService.getCurrentEntry()
+      .pipe(take(1))
+      .subscribe(result => {
+        this.currentEntry = result
+      })
   }
 
   updateEntryDetail(entryDetail: EntryDetail) {
-    this.workoutService.updateEntryDetail(entryDetail).subscribe(() => {
-      alert('Entry detail saved')
-    })
+    this.workoutService.updateEntryDetail(entryDetail)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.toast.success('Nice work hero!', 'Exercise completed')
+      })
   }
-
-  // saveEntry(entry: Entry) {
-  //   this.workoutService.saveEntry(entry).subscribe(() => {
-  //     alert('Entry saved, THIS SHOULD NOT BE USER ACTION')
-  //   })
-  // }
 }

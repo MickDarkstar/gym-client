@@ -9,4 +9,5 @@ export class EntryDetail {
     sets: number
     date: Date
     comment: string
+    done: boolean
 }
