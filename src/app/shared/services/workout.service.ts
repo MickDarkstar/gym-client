@@ -40,10 +40,11 @@ export class WorkoutService {
     )
   }
 
-  saveEntryDetail(entryDetail: EntryDetail): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>('entrydetails', entryDetail).pipe(map(result => {
-      return result
-    })
-    )
+  updateEntryDetail(entryDetail: EntryDetail): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>('entrydetails', entryDetail)
+      .pipe(map(result => {
+        return result
+      })
+      )
   }
 }

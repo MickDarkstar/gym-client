@@ -18,15 +18,15 @@ export class CurrentEntryComponent implements OnInit {
     })
   }
 
-  saveEntryDetail(entryDetail: EntryDetail) {
-    this.workoutService.saveEntryDetail(entryDetail).subscribe(() => {
+  updateEntryDetail(entryDetail: EntryDetail) {
+    this.workoutService.updateEntryDetail(entryDetail).subscribe(() => {
       alert('Entry detail saved')
     })
   }
 
-  saveEntry(entry: Entry) {
-    this.workoutService.saveEntry(entry).subscribe(() => {
-      alert('Entry saved')
-    })
-  }
+  // saveEntry(entry: Entry) {
+  //   this.workoutService.saveEntry(entry).subscribe(() => {
+  //     alert('Entry saved, THIS SHOULD NOT BE USER ACTION')
+  //   })
+  // }
 }

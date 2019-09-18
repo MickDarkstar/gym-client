@@ -1,6 +1,6 @@
 <div *ngIf="currentEntry">
   <div *ngFor="let entryDetail of currentEntry.entryDetails" class="pd-5">
-    <app-entry-detail-edit [entryDetail]="entryDetail" (output)="saveEntryDetail($event)">
+    <app-entry-detail-edit [entryDetail]="entryDetail" (output)="updateEntryDetail($event)">
     </app-entry-detail-edit>
   </div>
 </div>
