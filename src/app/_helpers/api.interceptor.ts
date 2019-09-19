@@ -6,8 +6,9 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const baseUrl = environment.baseUrl
-        const apiRequest = req.clone({ url: `${baseUrl}${req.url}` })
+        const apiUrl = environment.apiUrl
+
+        const apiRequest = req.clone({ url: `${apiUrl}${req.url}` })
         return next.handle(apiRequest)
     }
 }

@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
     constructor(private authenticationService: AuthService, private router: Router, private toast: ToastrService) { }
-
+    // https://www.youtube.com/watch?v=MN2WkxPnGTo
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const currentUser = this.authenticationService.currentUser;
         const token = this.authenticationService.currentIdToken;

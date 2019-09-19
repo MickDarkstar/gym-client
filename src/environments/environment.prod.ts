@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'gym-api.brothersofmetal.net'
+  baseUrl: '',
+  apiUrl: 'gym-api.brothersofmetal.net'
 };
