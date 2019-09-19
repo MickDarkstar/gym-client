@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'user', loadChildren: './user-manager/user-manager.module#UserManagerModule' },
   { path: '**', redirectTo: 'training' }
 ];
-
+// https://www.youtube.com/watch?v=7JA90VI9fAI
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

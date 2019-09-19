@@ -26,6 +26,8 @@ export class CurrentEntryComponent implements OnInit {
     this.workoutService.updateEntryDetail(entryDetail)
       .pipe(take(1))
       .subscribe(() => {
+        const entryIndex = this.currentEntry.entryDetails.findIndex(entry => entry.id === entryDetail.id)
+        this.currentEntry.entryDetails.splice(entryIndex, 1, entryDetail)
         this.toast.success('Nice work hero!', 'Exercise completed')
       })
   }

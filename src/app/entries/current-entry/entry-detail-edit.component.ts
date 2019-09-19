@@ -9,7 +9,6 @@ import { EntryDetail } from 'src/app/shared/models/entry-detail.model';
 export class EntryDetailEditComponent implements OnInit {
   @Input() entryDetail: EntryDetail
   @Output() output = new EventEmitter()
-  public done = false
   public entryDetailToSave: EntryDetail = null
   constructor() { }
 
@@ -18,7 +17,7 @@ export class EntryDetailEditComponent implements OnInit {
   }
 
   save() {
+    this.entryDetail.done = true
     this.output.emit(this.entryDetailToSave)
-    this.done = true
   }
 }
