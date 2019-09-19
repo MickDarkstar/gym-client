@@ -14,3 +14,5 @@
 Deploya testversion till:
 	- DB till one.com
 	- Klient till firebase, sätt releasevariabler genom fulhack bara för att få igång appen
+
+Fixa CORS eller vad det är, baseUrl + apiUrl konkateneras just nu. Bort med baseURL från alla requests!!
