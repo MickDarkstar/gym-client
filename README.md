@@ -16,11 +16,14 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Build for github pages
 Build for github pages with correct base-href:
-`ng build --prod --base-href https://mickdarkstar.github.io/gym-logger/`
+<!-- ng build --prod --base-href "https://<user-name>.github.io/<repo>/" -->
+`ng build --prod --base-href https://mickdarkstar.github.io/gym-client/`
 Deploy to github pages:
 `ngh`
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 
