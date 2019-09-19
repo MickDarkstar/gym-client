@@ -14,7 +14,7 @@ import { WorkoutService } from '../shared/services/workout.service';
 })
 export class MainContentComponent implements OnInit {
 
-  private dataSource: Exercise[]
+  dataSource: Exercise[]
 
   constructor(private authService: AuthService, private http: HttpClient, private workoutService: WorkoutService) { }
 
