@@ -14,16 +14,8 @@ export class TokenInterceptor implements HttpInterceptor {
         const token = this.authenticationService.currentIdToken;
         if (currentUser && token) {
             const headers = new HttpHeaders({
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-                'Authorization-Token': `${token}`,
-                // 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                // Following is actually not needed, may be needed in prob. We will see...
-                // 'Access-Control-Allow-Headers':
-                //     'Content-Type, Authorization, Authorization-Token' +
-                //     'Accept, X-Requested-With, ' +
-                //     'Access-Control-Request-Method, Access-Control-Request-Headers'
-            });
+                'Authorization-Token': `${token}`
+            })
             request = request.clone({
                 headers
             })
