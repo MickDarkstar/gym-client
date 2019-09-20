@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
@@ -13,10 +13,16 @@ export class TokenInterceptor implements HttpInterceptor {
         const currentUser = this.authenticationService.currentUser;
         const token = this.authenticationService.currentIdToken;
         if (currentUser && token) {
+            const headers = new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization-Token': `${token}`,
+                'Access-Control-Allow-Headers':
+                    'Access-Control-Allow-Headers, Origin, ' +
+                    'Accept, X-Requested-With, Content-Type, ' +
+                    'Access-Control-Request-Method, Access-Control-Request-Headers'
+            });
             request = request.clone({
-                setHeaders: {
-                    'Authorization-token': `${token}`
-                }
+                headers
             })
         }
         return next.handle(request);
