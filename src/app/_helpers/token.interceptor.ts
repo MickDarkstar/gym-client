@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
         if (currentUser && token) {
             const headers = new HttpHeaders({
                 'Authorization-Token': `${token}`
-            })
+            });
             request = request.clone({
                 headers
             })
