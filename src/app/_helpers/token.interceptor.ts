@@ -16,6 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
             const headers = new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Authorization-Token': `${token}`,
+                // Following is actually not needed, may be needed in prob. We will see...
                 'Access-Control-Allow-Headers':
                     'Access-Control-Allow-Headers, Origin, ' +
                     'Accept, X-Requested-With, Content-Type, ' +
