@@ -1,7 +1,6 @@
 *CRUD Exercises
 	-Ej delete på använda exercises
 *Exercises i dagens träningspass
-	- Köa/lägg till
 	- Sortera ordning
 	- Avköa/ ta bort
 	- Markera som "Done", vid update skall alltså en flagga sättas. Även möjlighet att ångra detta vid missclicks
@@ -12,7 +11,4 @@
 	- Nulla "Done" värdet för alla exercises och behålla senast körda värden.
 	
 Deploya testversion till:
-	- DB till one.com
 	- Klient till firebase, sätt releasevariabler genom fulhack bara för att få igång appen
-
-Fixa CORS eller vad det är, baseUrl + apiUrl konkateneras just nu. Bort med baseURL från alla requests!!

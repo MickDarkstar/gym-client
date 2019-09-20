@@ -3,7 +3,9 @@
   <!-- visa minimerad lista på gjorda övningar -->
   <div *ngFor="let entryDetail of currentEntry.entryDetails" class="pd-5">
     <!-- if entryDetail.done === false -->
-    <app-entry-detail-edit *ngIf="entryDetail.done == false" [entryDetail]="entryDetail" (output)="updateEntryDetail($event)">
+    <!-- <app-entry-detail-edit *ngIf="entryDetail.done == false" [entryDetail]="entryDetail" (output)="updateEntryDetail($event)"> -->
+    <app-entry-detail-edit [entryDetail]="entryDetail" (output)="updateEntryDetail($event)">
+
     </app-entry-detail-edit>
   </div>
 </div>

@@ -16,7 +16,6 @@ export class CurrentEntryComponent implements OnInit {
 
   ngOnInit() {
     this.workoutService.getCurrentEntry()
-      .pipe(take(1))
       .subscribe(result => {
         this.currentEntry = result
       })
