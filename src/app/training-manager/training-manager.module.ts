@@ -18,6 +18,11 @@ import { ExercisesComponent } from '../exercises/exercises.component';
 import { EntriesComponent } from '../entries/entries.component';
 import { EditExerciseComponent } from '../exercises/edit-exercise/edit-exercise.component';
 import { AuthGuard } from '../_guards/auth.guards';
+import { DeleteButtonComponent } from '../shared/components/delete-button/delete-button.component';
+import { EditButtonComponent } from '../shared/components/edit-button/edit-button.component';
+import { AppButtonComponent } from '../shared/components/app-button/app-button.component';
+import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDirective } from '../shared/directives/confirm.directive';
 
 const routes: Routes = [
   {
@@ -49,6 +54,11 @@ const routes: Routes = [
     EditExerciseComponent,
     EntryDetailEditComponent,
     EntriesComponent,
+    AppButtonComponent,
+    DeleteButtonComponent,
+    EditButtonComponent,
+    ConfirmDialogComponent,
+    ConfirmDirective
   ],
   imports: [
     CommonModule,
@@ -56,6 +66,9 @@ const routes: Routes = [
     FlexLayoutModule,
     FormsModule,
     RouterModule.forChild(routes)
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ]
 })
 export class TrainingManagerModule { }

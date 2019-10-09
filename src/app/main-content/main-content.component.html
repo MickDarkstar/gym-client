@@ -1,19 +1,25 @@
 <div class="flex-container" fxLayout.cs="column">
   <div *ngFor="let exercise of dataSource">
     <mat-card class="flex-item">
-      <mat-card-header>
-        <!-- <div mat-card-avatar class="example-header-image"></div> -->
-        <mat-card-title>{{ exercise.name }}</mat-card-title>
-        <!-- <mat-card-subtitle>{{ exercise.type }}</mat-card-subtitle> -->
-      </mat-card-header>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>{{ exercise.name }}</mat-card-title>
+      <mat-card-subtitle>{{ exercise.type }}</mat-card-subtitle>
       <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-      <!-- <mat-card-content>
+      <mat-card-content>
         <p>
+          Description: ...
         </p>
-      </mat-card-content> -->
+        <p>
+          Level: {{ exercise.level }}
+        </p>
+      </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="addExercise(exercise)">Queue for workout</button>
+        <div class="flex-container">
+          <span class="fill-remaining-spacer"></span>
+          <app-button label="Queue for workout" (onClick)="addExercise(exercise)"></app-button>
+        </div>
       </mat-card-actions>
+
     </mat-card>
   </div>
 </div>

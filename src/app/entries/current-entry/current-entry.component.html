@@ -1,4 +1,4 @@
-<div *ngIf="currentEntry">
+<div *ngIf="currentEntry && (currentEntry.entryDetails.length > 0);else todaysWorkoutIsEmpty">
   <!-- if entryDetail.done -->
   <!-- visa minimerad lista på gjorda övningar -->
   <div *ngFor="let entryDetail of currentEntry.entryDetails" class="pd-5">
@@ -9,3 +9,7 @@
     </app-entry-detail-edit>
   </div>
 </div>
+
+<ng-template #todaysWorkoutIsEmpty>
+  Nothing planned for todays workout, yet!
+</ng-template>

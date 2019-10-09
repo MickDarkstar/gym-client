@@ -1,5 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-@import '~ngx-toastr/toastr.css';
+@import "@angular/material/prebuilt-themes/pink-bluegrey.css";
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+@import "~ngx-toastr/toastr.css";
+
+.fill-remaining-spacer {
+  /* This fills the remaining space, by using flexbox. 
+         Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-item {
+  width: 300px;
+  margin-top: 10px;
+  color: white;
+  font-size: 1em;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+@media all and (max-width: 720px) {
+  .flex-container {
+    // justify-content: flex-start;
+  }
+  .flex-item {
+    width: 75vw;
+  }
+}
+
+.app-button {
+  margin: 2px;
+}
+
+.mat-card,
+.flex-item {
+  max-width: 75vw;
+}
+
+.mat-card-title {
+  font-size: 1.1em;
+}
+.mat-card-subtitle {
+  font-size: 1em;
+}
+.mat-card-content {
+  font-size: 0.8em;
+  min-height: 43px;
+}
+
+.ml-8 {
+  margin-left: 8px;
+}
