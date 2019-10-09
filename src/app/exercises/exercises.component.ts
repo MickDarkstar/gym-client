@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { WorkoutService } from '../shared/services/workout.service';
 import { ApiResponse } from '../shared/models/api-response.model';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercises',
@@ -14,9 +15,13 @@ import { map } from 'rxjs/operators';
 export class ExercisesComponent implements OnInit {
   exercises: Exercise[]
 
-  constructor(private http: HttpClient, private workoutService: WorkoutService) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    // Todo: put in service
     this.http.get<ApiResponse>('exercises')
       .pipe(map(result => {
         this.exercises = result.data
@@ -25,7 +30,7 @@ export class ExercisesComponent implements OnInit {
   }
 
   edit(exercise: Exercise) {
-    // Todo: implement
+    this.router.navigate(['training/edit-exercise'], { state: { data: exercise } })
   }
 
   delete(exercise: Exercise) {

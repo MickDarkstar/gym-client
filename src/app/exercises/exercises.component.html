@@ -1,12 +1,8 @@
 <div class="flex-container" fxLayout.cs="column">
   <div *ngFor="let exercise of exercises">
     <mat-card class="flex-item">
-      <!-- <mat-card-header> -->
-      <!-- <div mat-card-avatar class="example-header-image"></div> -->
       <mat-card-title>{{ exercise.name }}</mat-card-title>
       <mat-card-subtitle>{{ exercise.type }}</mat-card-subtitle>
-      <!-- </mat-card-header> -->
-      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
       <mat-card-content>
         <p>
           test
@@ -23,7 +19,6 @@
           <span class="fill-remaining-spacer"></span>
           <edit-button (onClick)="edit(exercise)"></edit-button>
           <delete-button (onClick)="delete(exercise)"></delete-button>
-          <!-- <edit-button (onClick)="edit(exercise)"></edit-button> -->
         </div>
       </mat-card-actions>
 

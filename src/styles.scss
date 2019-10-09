@@ -16,6 +16,21 @@ body {
   flex: 1 1 auto;
 }
 
+.container {
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: space-around;
+}
+
+.flex-container-column {
+  display: flex;
+  flex-flow: column wrap;
+
+  justify-content: space-around;
+  
+}
+
 .flex-container {
   display: flex;
   flex-flow: row wrap;
@@ -58,6 +73,16 @@ body {
   min-height: 43px;
 }
 
+// generic stuff
+.center {
+  margin: 0 auto;
+}
+
 .ml-8 {
   margin-left: 8px;
+}
+
+// width & heights
+.mw-50 {
+  max-width: 50%;
 }
