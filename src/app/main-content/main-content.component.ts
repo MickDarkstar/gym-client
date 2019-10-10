@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
-import { Subject, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Exercise } from '../shared/models/exercise.model';
-import { ApiResponse } from '../shared/models/api-response.model';
+import { Exercise } from '../shared/models/exercises/exercise.model';
 import { WorkoutService } from '../shared/services/workout.service';
+import { ExerciseService } from '../shared/services/exercise.service';
 
 @Component({
   selector: 'app-main-content',
@@ -16,13 +14,18 @@ export class MainContentComponent implements OnInit {
 
   dataSource: Exercise[]
 
-  constructor(private authService: AuthService, private http: HttpClient, private workoutService: WorkoutService) { }
+  constructor(
+    private authService: AuthService,
+    private workoutService: WorkoutService,
+    private exerciseService: ExerciseService
+  ) { }
 
   ngOnInit() {
+    // Todo: arbeta bort, redirect sker i auth-interceptor om användare ej är inloggad.
     if (this.authService.isLoggedIn()) {
-      this.http.get<ApiResponse>('exercises')
-        .pipe(map(result => {
-          this.dataSource = result.data
+      this.exerciseService.allExercises()
+        .pipe(map(exercises => {
+          this.dataSource = exercises
         }))
         .subscribe()
     }

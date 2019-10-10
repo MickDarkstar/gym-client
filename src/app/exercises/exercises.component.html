@@ -1,16 +1,12 @@
 <div class="flex-container" fxLayout.cs="column">
-  <div *ngFor="let exercise of exercises">
+  <div *ngFor="let exercise of dataSource">
     <mat-card class="flex-item">
       <mat-card-title>{{ exercise.name }}</mat-card-title>
       <mat-card-subtitle>{{ exercise.type }}</mat-card-subtitle>
+
       <mat-card-content>
         <p>
-          test
-          {{ exercise.type }}
-        </p>
-        <p>
-          test
-          {{ exercise.level }}
+          Level: {{ exercise.level }}
         </p>
       </mat-card-content>
 

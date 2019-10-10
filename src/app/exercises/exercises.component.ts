@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Exercise } from '../shared/models/exercise.model';
-import { HttpClient } from '@angular/common/http';
-import { WorkoutService } from '../shared/services/workout.service';
-import { ApiResponse } from '../shared/models/api-response.model';
+import { Exercise } from '../shared/models/exercises/exercise.model';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ExerciseService } from '../shared/services/exercise.service';
+import { ExerciseDelete } from '../shared/models/exercises/exercise-delete.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-exercises',
@@ -13,18 +13,19 @@ import { Router } from '@angular/router';
 })
 
 export class ExercisesComponent implements OnInit {
-  exercises: Exercise[]
+  dataSource: Exercise[]
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private exerciseService: ExerciseService,
+    private toast: ToastrService
+
   ) { }
 
   ngOnInit() {
-    // Todo: put in service
-    this.http.get<ApiResponse>('exercises')
-      .pipe(map(result => {
-        this.exercises = result.data
+    this.exerciseService.allExercises()
+      .pipe(map(exercises => {
+        this.dataSource = exercises
       }))
       .subscribe()
   }
@@ -34,6 +35,19 @@ export class ExercisesComponent implements OnInit {
   }
 
   delete(exercise: Exercise) {
-    // Todo: implement
+    this.exerciseService.deleteExercise(exercise as ExerciseDelete)
+      .pipe(map(result => {
+        if (result) {
+          this.toast.success(result.message)
+        }
+        if (result.data === true) {
+          this.removeExerciseFromLocalDataSource(exercise)
+        }
+      }))
+      .subscribe()
+  }
+
+  private removeExerciseFromLocalDataSource(deletedExercise: Exercise) {
+    this.dataSource = this.dataSource.filter(x => x.id !== deletedExercise.id)
   }
 }

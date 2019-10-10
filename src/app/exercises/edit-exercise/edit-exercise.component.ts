@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Exercise } from 'src/app/shared/models/exercise.model';
-import { WorkoutService } from 'src/app/shared/services/workout.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { browser } from 'protractor';
+import { Exercise } from 'src/app/shared/models/exercises/exercise.model';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+import { ExerciseService } from 'src/app/shared/services/exercise.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-exercise',
@@ -16,8 +16,9 @@ export class EditExerciseComponent implements OnInit {
   exercise: Exercise
 
   constructor(
-    public activatedRoute: ActivatedRoute,
-    // private exerciseService: ExerciseService
+    private activatedRoute: ActivatedRoute,
+    private exerciseService: ExerciseService,
+    private toast: ToastrService
   ) { }
 
   ngOnInit() {
@@ -32,15 +33,11 @@ export class EditExerciseComponent implements OnInit {
   }
 
   save() {
-    // "id": "4",
-    // "muscleId": "1",
-    // "name": "Benchpress - 0 degree",
-    // "type": "Benchpress",
-    // "level": "200"
-    // this.http.put<ApiResponse>('exercises')
-    //   .pipe(map(result => {
-    //     this.exercises = result.data
-    //   }))
-    //   .subscribe()
+    this.exerciseService.editExercise(this.exercise)
+      .subscribe((result) => {
+        if (result) {
+          this.toast.success(result.message)
+        }
+      })
   }
 }

@@ -1,4 +1,4 @@
-import { Exercise } from './exercise.model';
+import { Exercise } from './exercises/exercise.model';
 
 export class EntryDetail {
     id: number

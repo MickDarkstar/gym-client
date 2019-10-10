@@ -12,7 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CurrentEntryComponent implements OnInit {
   currentEntry: Entry
-  constructor(private workoutService: WorkoutService, private toast: ToastrService) { }
+
+  constructor(
+    private workoutService: WorkoutService,
+    private toast: ToastrService
+  ) { }
 
   ngOnInit() {
     this.workoutService.getCurrentEntry()
@@ -24,7 +28,9 @@ export class CurrentEntryComponent implements OnInit {
   updateEntryDetail(entryDetail: EntryDetail) {
     this.workoutService.updateEntryDetail(entryDetail)
       .pipe(take(1))
-      .subscribe(() => {
+      .subscribe((result) => {
+        console.log('updateEntryDetail')
+        console.log(result.message)
         const entryIndex = this.currentEntry.entryDetails.findIndex(entry => entry.id === entryDetail.id)
         this.currentEntry.entryDetails.splice(entryIndex, 1, entryDetail)
         this.toast.success('Nice work hero!', 'Exercise completed')

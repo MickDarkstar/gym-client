@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CreateEntryDetail } from '../models/create-entry-detail.model';
-import { Exercise } from '../models/exercise.model';
+import { Exercise } from '../models/exercises/exercise.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiResponse } from '../models/api-response.model';
 import { map, take } from 'rxjs/operators';
