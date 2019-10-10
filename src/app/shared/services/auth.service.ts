@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { User } from '../models/user.model'
 import { map, take } from 'rxjs/operators'
 import { Observable, Subject, BehaviorSubject } from 'rxjs'
-import { ApiResponse } from '../models/api-response.model';
+import { IApiResponse } from '../models/api-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<ApiResponse>('login', { email, password })
+    return this.http.post<IApiResponse>('login', { email, password })
       .pipe(map(authResult => {
         if (authResult.data) {
 

@@ -26,8 +26,6 @@ body {
 .flex-container-column {
   display: flex;
   flex-flow: column wrap;
-
-  justify-content: space-around;
 }
 
 .flex-container {
@@ -84,4 +82,7 @@ body {
 // width & heights
 .mw-50 {
   max-width: 50%;
+}
+.mw-80 {
+  max-width: 80%;
 }

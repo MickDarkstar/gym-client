@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Exercise } from 'src/app/shared/models/exercises/exercise.model';
+import { Exercise, IExercise } from 'src/app/shared/models/exercises/exercise.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { ExerciseService } from 'src/app/shared/services/exercise.service';
 import { ToastrService } from 'ngx-toastr';
+import { IApiResponse } from 'src/app/shared/models/api-response.model';
 
 @Component({
   selector: 'app-edit-exercise',
@@ -13,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditExerciseComponent implements OnInit {
   private state: Observable<Exercise>;
-  exercise: Exercise
+  exercise: IExercise
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,18 +25,19 @@ export class EditExerciseComponent implements OnInit {
 
   ngOnInit() {
     this.state = this.activatedRoute.paramMap
-      .pipe(map(() => window.history.state.data
+      .pipe(map(() =>
+        this.exercise = window.history.state.data as IExercise
       ))
     this.state
       .pipe(take(1))
-      .subscribe((exercise: Exercise) => {
+      .subscribe((exercise: IExercise) => {
         this.exercise = exercise
       })
   }
 
   save() {
     this.exerciseService.editExercise(this.exercise)
-      .subscribe((result) => {
+      .subscribe((result: IApiResponse) => {
         if (result) {
           this.toast.success(result.message)
         }
