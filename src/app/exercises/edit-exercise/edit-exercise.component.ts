@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Exercise } from 'src/app/shared/models/exercises/exercise.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { ExerciseService } from 'src/app/shared/services/exercise.service';
@@ -17,6 +17,7 @@ export class EditExerciseComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private exerciseService: ExerciseService,
     private toast: ToastrService
   ) { }
@@ -38,6 +39,14 @@ export class EditExerciseComponent implements OnInit {
         if (result) {
           this.toast.success(result.message)
         }
+
+        // Todo: se annan kommentar
+        if (result.data === true) {
+          this.router.navigate(['training/exercises'])
+        }
       })
+  }
+  cancel() {
+    this.router.navigate(['training/exercises'])
   }
 }
