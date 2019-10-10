@@ -12,7 +12,7 @@ import { ExerciseService } from '../shared/services/exercise.service';
 })
 export class MainContentComponent implements OnInit {
 
-  dataSource: Exercise[]
+  exercises: Exercise[]
 
   constructor(
     private authService: AuthService,
@@ -24,10 +24,9 @@ export class MainContentComponent implements OnInit {
     // Todo: arbeta bort, redirect sker i auth-interceptor om användare ej är inloggad.
     if (this.authService.isLoggedIn()) {
       this.exerciseService.allExercises()
-        .pipe(map(exercises => {
-          this.dataSource = exercises
-        }))
-        .subscribe()
+        .subscribe((result) => {
+          this.exercises = result
+        })
     }
   }
 

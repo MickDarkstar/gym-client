@@ -10,7 +10,9 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatProgressSpinnerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSelectModule,
+  MatOptionModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule, } from '@angular/material/sidenav';
@@ -44,7 +46,9 @@ import { MatSidenavModule, } from '@angular/material/sidenav';
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatOptionModule
   ]
 })
 export class MaterialModule { }

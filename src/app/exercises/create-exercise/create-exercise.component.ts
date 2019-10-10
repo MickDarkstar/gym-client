@@ -2,18 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { ExerciseService } from 'src/app/shared/services/exercise.service';
 import { ExerciseCreate } from 'src/app/shared/models/exercises/exercise-create.model';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-exercise',
-  templateUrl: './create-exercise.component.html',
+  templateUrl: '../create-edit-exercise.component.html',
   styleUrls: ['./create-exercise.component.scss']
 })
 export class CreateExerciseComponent implements OnInit {
   public exercise: ExerciseCreate
+  title = 'Create Exercise'
 
   constructor(
     private exerciseService: ExerciseService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -32,6 +35,10 @@ export class CreateExerciseComponent implements OnInit {
           this.initNewExercise()
         }
       })
+  }
+
+  cancel() {
+    this.router.navigate(['training/exercises'])
   }
 
   initNewExercise() {
