@@ -35,7 +35,7 @@ const routes: Routes = [
       { path: 'edit-exercise', component: EditExerciseComponent, canActivate: [AuthGuard] },
       { path: 'entries', component: EntriesComponent, canActivate: [AuthGuard] },
 
-      { path: '', component: MainContentComponent }
+      { path: '', component: MainContentComponent, canActivate: [AuthGuard]}
     ]
   },
   { path: '**', redirectTo: '' }
