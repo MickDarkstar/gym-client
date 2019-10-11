@@ -10,17 +10,15 @@ body {
 }
 @import "~ngx-toastr/toastr.css";
 
-.fill-remaining-spacer {
+.spacer {
   /* This fills the remaining space, by using flexbox. 
          Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
 
-.container {
+.button-container {
   display: flex;
-  flex-flow: row wrap;
-
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 .flex-container-column {
@@ -31,6 +29,7 @@ body {
 .flex-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: left;
 }
 
 .flex-item {
@@ -83,6 +82,6 @@ body {
 .mw-50 {
   max-width: 50%;
 }
-.mw-80 {
+.minw80 {
   max-width: 80%;
 }

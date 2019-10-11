@@ -3,7 +3,6 @@ import { WorkoutService } from 'src/app/shared/services/workout.service';
 import { Entry } from 'src/app/shared/models/entry.model';
 import { EntryDetail } from 'src/app/shared/models/entry-detail.model';
 import { take } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-current-entry',
@@ -12,28 +11,31 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CurrentEntryComponent implements OnInit {
   currentEntry: Entry
+  unplanned: boolean
 
   constructor(
-    private workoutService: WorkoutService,
-    private toast: ToastrService
+    private workoutService: WorkoutService
   ) { }
 
   ngOnInit() {
-    this.workoutService.getCurrentEntry()
+    this.workoutService.entry
       .subscribe(result => {
-        this.currentEntry = result
+        if (result) {
+          this.currentEntry = result
+        }
+        this.unplanned = (result && result.entryDetails && result.entryDetails.length > 0) ? false : true;
       })
+    this.workoutService.loadCurrentEntry()
   }
 
   updateEntryDetail(entryDetail: EntryDetail) {
     this.workoutService.updateEntryDetail(entryDetail)
       .pipe(take(1))
-      .subscribe((result) => {
-        console.log('updateEntryDetail')
-        console.log(result.message)
-        const entryIndex = this.currentEntry.entryDetails.findIndex(entry => entry.id === entryDetail.id)
-        this.currentEntry.entryDetails.splice(entryIndex, 1, entryDetail)
-        this.toast.success('Nice work hero!', 'Exercise completed')
+      .subscribe((success) => {
+        if (success) {
+          const entryIndex = this.currentEntry.entryDetails.findIndex(entry => entry.id === entryDetail.id)
+          this.currentEntry.entryDetails.splice(entryIndex, 1, entryDetail)
+        }
       })
   }
 }

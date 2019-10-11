@@ -1,4 +1,4 @@
-<div class="flex-container-column mw-80 center">
+<div class="mat-form-container">
     <h3>
         {{title}}
     </h3>
@@ -18,8 +18,8 @@
             <mat-option value="5">5</mat-option>
         </mat-select>
     </mat-form-field>
-    <div class="flex-container center">
-        <app-button label="Save" onClick="save()"></app-button>
-        <app-button label="Cancel" onClick="cancel()"></app-button>
+    <div class="button-container">
+        <app-button label="Cancel" (onClick)="cancel()"></app-button>
+        <app-button label="Save" (onClick)="save()"></app-button>
     </div>
 </div>

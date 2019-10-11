@@ -1,0 +1,8 @@
+.mat-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-container > * {
+  width: 100%;
+}

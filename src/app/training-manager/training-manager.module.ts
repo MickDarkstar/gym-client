@@ -18,11 +18,11 @@ import { ExercisesComponent } from '../exercises/exercises.component';
 import { EntriesComponent } from '../entries/entries.component';
 import { EditExerciseComponent } from '../exercises/edit-exercise/edit-exercise.component';
 import { AuthGuard } from '../_guards/auth.guards';
-import { DeleteButtonComponent } from '../shared/components/delete-button/delete-button.component';
 import { EditButtonComponent } from '../shared/components/edit-button/edit-button.component';
 import { AppButtonComponent } from '../shared/components/app-button/app-button.component';
 import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
 import { ConfirmDirective } from '../shared/directives/confirm.directive';
+import { ConfirmButtonComponent } from '../shared/components/delete-button/confirm-button.component';
 
 const routes: Routes = [
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
       { path: 'edit-exercise', component: EditExerciseComponent, canActivate: [AuthGuard] },
       { path: 'entries', component: EntriesComponent, canActivate: [AuthGuard] },
 
-      { path: '', component: MainContentComponent, canActivate: [AuthGuard]}
+      { path: '', component: MainContentComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: '**', redirectTo: '' }
@@ -55,7 +55,7 @@ const routes: Routes = [
     EntryDetailEditComponent,
     EntriesComponent,
     AppButtonComponent,
-    DeleteButtonComponent,
+    ConfirmButtonComponent,
     EditButtonComponent,
     ConfirmDialogComponent,
     ConfirmDirective

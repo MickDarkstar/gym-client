@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Exercise } from '../shared/models/exercises/exercise.model';
-import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ExerciseService } from '../shared/services/exercise.service';
 import { ExerciseDelete } from '../shared/models/exercises/exercise-delete.model';
-import { ToastrService } from 'ngx-toastr';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-exercises',
@@ -12,22 +12,27 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./exercises.component.scss']
 })
 
-export class ExercisesComponent implements OnInit {
+export class ExercisesComponent implements OnInit, OnDestroy {
   dataSource: Exercise[]
+  unsubscribe: Subject<void>
 
   constructor(
     private router: Router,
-    private exerciseService: ExerciseService,
-    private toast: ToastrService
+    private exerciseService: ExerciseService
 
   ) { }
 
   ngOnInit() {
-    this.exerciseService.allExercises()
-      .pipe(map(exercises => {
-        this.dataSource = exercises
-      }))
-      .subscribe()
+    this.exerciseService.exercises
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(result => {
+        this.dataSource = result
+      })
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.complete()
+    this.unsubscribe.unsubscribe()
   }
 
   edit(exercise: Exercise) {
@@ -36,15 +41,11 @@ export class ExercisesComponent implements OnInit {
 
   delete(exercise: Exercise) {
     this.exerciseService.deleteExercise(exercise as ExerciseDelete)
-      .pipe(map(result => {
-        if (result) {
-          this.toast.success(result.message)
-        }
-        if (result.data === true) {
+      .subscribe(success => {
+        if (success) {
           this.removeExerciseFromLocalDataSource(exercise)
         }
-      }))
-      .subscribe()
+      })
   }
 
   private removeExerciseFromLocalDataSource(deletedExercise: Exercise) {

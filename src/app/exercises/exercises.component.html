@@ -1,3 +1,4 @@
+<h3>Exercises</h3>
 <div class="flex-container" fxLayout.cs="column">
   <div *ngFor="let exercise of dataSource">
     <mat-card class="flex-item">
@@ -11,10 +12,10 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <div class="flex-container">
-          <span class="fill-remaining-spacer"></span>
+        <div class="button-container">
+          <confirm-button confirmMessage="Do you confirm the deletion of this data?" (onClick)="delete(exercise)"></confirm-button>
+          <span class="spacer"></span>
           <edit-button (onClick)="edit(exercise)"></edit-button>
-          <delete-button (onClick)="delete(exercise)"></delete-button>
         </div>
       </mat-card-actions>
 

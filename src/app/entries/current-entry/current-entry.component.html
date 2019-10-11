@@ -10,6 +10,14 @@
   </div>
 </div>
 
-<ng-template #todaysWorkoutIsEmpty>
-  Nothing planned for todays workout, yet!
-</ng-template>
+<div class="container" *ngIf="unplanned">
+  <p>
+    No exercises planned for todays workout.. (yet!)
+  </p>
+  <div class="flex-container">
+    <p>
+      You can choose from exercises here ->
+    </p>
+    <app-button label="Lets go!" routerLink="exercises" routerLinkActive="active"></app-button>
+  </div>
+</div>

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ExerciseService } from 'src/app/shared/services/exercise.service';
 import { ExerciseCreate } from 'src/app/shared/models/exercises/exercise-create.model';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-exercise',
   templateUrl: '../create-edit-exercise.component.html',
-  styleUrls: ['./create-exercise.component.scss']
+  styleUrls: ['../create-edit-exercise.component.scss']
 })
 export class CreateExerciseComponent implements OnInit {
   public exercise: ExerciseCreate
@@ -15,7 +14,6 @@ export class CreateExerciseComponent implements OnInit {
 
   constructor(
     private exerciseService: ExerciseService,
-    private toast: ToastrService,
     private router: Router
   ) { }
 
@@ -26,9 +24,6 @@ export class CreateExerciseComponent implements OnInit {
   save() {
     this.exerciseService.createExercise(this.exercise)
       .subscribe((result) => {
-        if (result) {
-          this.toast.success(result.message)
-        }
         // Todo: lägg till ok-flagga istället för att kontrollera boolean-värdet på data
         // Todo: Fixa detta i api:et också.
         if (result.data === true) {

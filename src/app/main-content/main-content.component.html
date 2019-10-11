@@ -1,3 +1,4 @@
+<h3>Exercises to queue for todays workout</h3>
 <div class="flex-container" fxLayout.cs="column">
   <div *ngFor="let exercise of exercises">
     <mat-card class="flex-item">
@@ -11,8 +12,8 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <div class="flex-container">
-          <span class="fill-remaining-spacer"></span>
+        <div class="button-container">
+          <span class="spacer"></span>
           <app-button label="Queue for workout" (onClick)="addExercise(exercise)"></app-button>
         </div>
       </mat-card-actions>
