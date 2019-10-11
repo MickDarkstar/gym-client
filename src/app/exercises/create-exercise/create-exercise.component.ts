@@ -26,7 +26,7 @@ export class CreateExerciseComponent implements OnInit {
       .subscribe((result) => {
         // Todo: lägg till ok-flagga istället för att kontrollera boolean-värdet på data
         // Todo: Fixa detta i api:et också.
-        if (result.data === true) {
+        if (result === true) {
           this.initNewExercise()
         }
       })
