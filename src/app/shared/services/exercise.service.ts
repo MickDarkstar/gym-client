@@ -31,12 +31,6 @@ export class ExerciseService {
           } else {
             this.showErrorMessage()
           }
-        },
-        err => {
-          console.log(err)
-          this.toast.warning(err)
-          this.toast.warning("ta bort error message i ExerciseService vid result")
-          this.showErrorMessage()
         }
       )
   }
