@@ -3,8 +3,6 @@ import { Exercise } from '../shared/models/exercises/exercise.model';
 import { Router } from '@angular/router';
 import { ExerciseService } from '../shared/services/exercise.service';
 import { ExerciseDelete } from '../shared/models/exercises/exercise-delete.model';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-exercises',
@@ -12,9 +10,8 @@ import { Subject } from 'rxjs';
   styleUrls: ['./exercises.component.scss']
 })
 
-export class ExercisesComponent implements OnInit, OnDestroy {
+export class ExercisesComponent implements OnInit {
   dataSource: Exercise[]
-  unsubscribe: Subject<void>
 
   constructor(
     private router: Router,
@@ -24,15 +21,9 @@ export class ExercisesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.exerciseService.exercises
-      .pipe(takeUntil(this.unsubscribe))
       .subscribe(result => {
         this.dataSource = result
       })
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe.complete()
-    this.unsubscribe.unsubscribe()
   }
 
   edit(exercise: Exercise) {

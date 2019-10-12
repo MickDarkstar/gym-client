@@ -62,7 +62,8 @@ export class WorkoutService implements OnDestroy {
   loadCurrentEntry(): void {
     this.http.get<IApiResponse>('currententry')
       .subscribe(result => {
-        this.entry.next(result.data as Entry)
+        const entry = result.data as Entry;
+        this.entry.next(entry)
       })
   }
 

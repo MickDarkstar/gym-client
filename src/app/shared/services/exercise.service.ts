@@ -18,32 +18,31 @@ export class ExerciseService {
     private http: HttpClient,
     private toast: ToastrService
   ) {
-    this.exercises.next(null)
-    this.init()
+    this.loadAllExercises()
   }
 
-  init() {
-    this.allExercises().subscribe()
-  }
-
-  allExercises(): Observable<boolean> {
-    return this.http.get<IApiResponse>('exercises')
-      .pipe(map(
+  loadAllExercises() {
+    this.http.get<IApiResponse>('exercises')
+      .subscribe(
         result => {
           if (result && result.data) {
             const exercises = result.data as Exercise[]
             this.exercises.next(exercises)
-            return true
+          } else {
+            this.showErrorMessage()
           }
-          this.toast.error('Woops! Something went wrong')
-          return false
         },
         err => {
           console.log(err)
           this.toast.warning(err)
-          return false
-        })
+          this.toast.warning("ta bort error message i ExerciseService vid result")
+          this.showErrorMessage()
+        }
       )
+  }
+
+  private showErrorMessage() {
+    this.toast.error('Woops! Something went wrong')
   }
 
   createExercise(exercise: ExerciseCreate): Observable<boolean> {
