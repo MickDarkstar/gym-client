@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core'
 import * as moment from 'moment'
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { User } from '../models/user.model'
-import { map, take } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { Observable, Subject, BehaviorSubject } from 'rxjs'
 import { IApiResponse } from '../models/api-response.model';
+import { RedirectService } from './redirect.service'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,10 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private redirectService: RedirectService
+    ) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -30,7 +34,7 @@ export class AuthService {
     return this.http.post<IApiResponse>('login', { email, password })
       .pipe(map(authResult => {
         if (authResult.data) {
-
+          // Todo: gör om gör rätt. Skall inte returnera observable<subscription>.
           return this.setSession(authResult.data).subscribe(() => {
             return this.currentUserValue
           })
@@ -42,7 +46,7 @@ export class AuthService {
   private setSession(authResultData): Observable<boolean> {
     const expiresAt = moment().add(authResultData.expiresIn, 'second')
 
-    // Kan tas bort senare eller flyttas till currentUser
+    // Todo: Kan tas bort senare eller flyttas till currentUser
     localStorage.setItem('id_token', authResultData.jwt)
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()))
     localStorage.setItem('currentUser', JSON.stringify(authResultData.user))
@@ -51,12 +55,12 @@ export class AuthService {
     return new Subject<true>();
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
     localStorage.removeItem('currentUser')
-    this.currentUserSubject.next(null);
-    return true
+    this.currentUserSubject.next(null)
+    this.redirectService.loginPage()
   }
 
   public isLoggedIn() {

@@ -49,6 +49,7 @@ export class ExerciseService {
     return this.http.post<IApiResponse>('exercises', exercise)
       .pipe(map(result => {
         if (result.data) {
+          this.loadAllExercises()
           this.toast.success(result.message)
           return true
         }
@@ -61,6 +62,7 @@ export class ExerciseService {
     return this.http.put<IApiResponse>('exercises', exercise)
       .pipe(map(result => {
         if (result.data) {
+          this.loadAllExercises()
           this.toast.success(result.message)
           return true
         }
@@ -82,6 +84,7 @@ export class ExerciseService {
     return this.http.delete<IApiResponse>('exercises', options)
       .pipe(map(result => {
         if (result && result.data) {
+          this.loadAllExercises()
           this.toast.success(result.message)
           return true
         }

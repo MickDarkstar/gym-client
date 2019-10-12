@@ -23,13 +23,20 @@ export class CreateExerciseComponent implements OnInit {
 
   save() {
     this.exerciseService.createExercise(this.exercise)
-      .subscribe((result) => {
-        // Todo: lägg till ok-flagga istället för att kontrollera boolean-värdet på data
-        // Todo: Fixa detta i api:et också.
-        if (result === true) {
-          this.initNewExercise()
+      .subscribe(
+        result => {
+          // Todo: lägg till ok-flagga istället för att kontrollera boolean-värdet på data
+          // Todo: Fixa detta i api:et också.
+          if (result === true) {
+            this.initNewExercise()
+          }
+        },
+        error => {
+          error.error.message.forEach(element => {
+            alert(element.Exercise)
+          });
         }
-      })
+      )
   }
 
   cancel() {
@@ -38,6 +45,5 @@ export class CreateExerciseComponent implements OnInit {
 
   initNewExercise() {
     this.exercise = new ExerciseCreate()
-    this.exercise.muscleId = 0
   }
 }
