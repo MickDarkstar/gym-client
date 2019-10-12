@@ -2,28 +2,26 @@ import { Injectable } from '@angular/core'
 import * as moment from 'moment'
 import { HttpClient } from '@angular/common/http'
 import { User } from '../models/user.model'
-import { map } from 'rxjs/operators'
-import { Observable, Subject, BehaviorSubject } from 'rxjs'
+import { Observable, BehaviorSubject, from } from 'rxjs'
 import { IApiResponse } from '../models/api-response.model';
-import { RedirectService } from './redirect.service'
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<User>
+  public currentUser: Observable<User>
 
   constructor(
     private http: HttpClient,
-    private redirectService: RedirectService
-    ) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+  ) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')))
+    this.currentUser = this.currentUserSubject.asObservable()
   }
 
   public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+    return this.currentUserSubject.value
   }
 
   public get currentIdToken(): string {
@@ -32,18 +30,16 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post<IApiResponse>('login', { email, password })
-      .pipe(map(authResult => {
-        if (authResult.data) {
-          // Todo: gör om gör rätt. Skall inte returnera observable<subscription>.
-          return this.setSession(authResult.data).subscribe(() => {
-            return this.currentUserValue
-          })
+      .pipe(map(result => {
+        if (result) {
+          this.setSession(result.data)
         }
+        return (result.data) as boolean
       })
       )
   }
 
-  private setSession(authResultData): Observable<boolean> {
+  private setSession(authResultData) {
     const expiresAt = moment().add(authResultData.expiresIn, 'second')
 
     // Todo: Kan tas bort senare eller flyttas till currentUser
@@ -51,8 +47,6 @@ export class AuthService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()))
     localStorage.setItem('currentUser', JSON.stringify(authResultData.user))
     this.currentUserSubject.next(authResultData.user)
-
-    return new Subject<true>();
   }
 
   logout(): void {
@@ -60,18 +54,26 @@ export class AuthService {
     localStorage.removeItem('expires_at')
     localStorage.removeItem('currentUser')
     this.currentUserSubject.next(null)
-    this.redirectService.loginPage()
   }
 
   public isLoggedIn() {
-    return moment().isBefore(this.getExpiration())
+    return new Observable<boolean>((observer) => {
+      observer.next(
+        this.isTokenNotExpired()
+      )
+      observer.complete()
+    })
   }
 
-  isLoggedOut() {
+  public isLoggedOut() {
     return !this.isLoggedIn()
   }
 
-  getExpiration() {
+  private isTokenNotExpired() {
+    return moment().isBefore(this.getExpiration())
+  }
+
+  private getExpiration() {
     const expiration = localStorage.getItem('expires_at')
     const expiresAt = JSON.parse(expiration)
     return moment(expiresAt)

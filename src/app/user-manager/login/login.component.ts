@@ -11,6 +11,7 @@ import { first } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  // Todo: fixa en BusySpinner
   loading = false;
   submitted = false;
   returnUrl: string;
@@ -44,17 +45,11 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
     this.authService.login(this.f.email.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        // Todo: gör om gör rätt. detta kan ske i authService.login
-        // redirect i authService.login och ta bort subscribe här efter refaktorisering av den metoden..
-        // Räcker med en one-liner här => this.authService.login(this.f.email.value, this.f.password.value)
-        data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          alert(error.error.message)
-          this.loading = false
-        })
+      .subscribe((result) => {
+        if (result) {
+          this.router.navigate([this.returnUrl])
+        }
+      })
+    this.loading = false
   }
 }

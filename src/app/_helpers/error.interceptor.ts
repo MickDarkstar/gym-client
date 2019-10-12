@@ -14,25 +14,37 @@ export class ErrorInterceptor implements HttpInterceptor {
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(catchError(err => {
-            this.handleError(err)
+        return next.handle(request)
+            .pipe(catchError(err => {
+                const error = err.error.message || err.statusText
 
-            const error = err.error.message || err.statusText
-            return throwError(error)
-        }))
+                this.feedbackToUser(error)
+
+                this.handleError(err)
+
+                return throwError(error)
+            }))
     }
 
     private handleError(err: any) {
-        if (err.status === 400) {
-            this.toastr.error(err.error.message);
-        }
         if (err.status === 401) {
-            // auto logout if 401 response returned from api
-            this.authenticationService.logout()
+            // logga ut, token har gått ut eller användare ej inloggad och navigerat via url.
+            // returnUrl måste hänga med på något sätt här, töms om denna logout() används
+            // this.authenticationService.logout()
         }
-        if (err.status > 200 && err.status < 400 || err.status > 500) {
-            const error = err.error.message || err.statusText
-            console.log(err)
+    }
+
+    private feedbackToUser(error: any) {
+        if (error instanceof Array) {
+            error.forEach(message => {
+                let errorMessage = ''
+                Object.keys(message).forEach(
+                    key => {
+                        errorMessage = key as any + ': ' + message[key]
+                    })
+                this.toastr.error(errorMessage)
+            })
+        } else {
             this.toastr.error(error)
         }
     }

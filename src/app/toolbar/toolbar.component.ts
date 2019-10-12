@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
-import { Router } from '@angular/router';
+import { RedirectService } from '../shared/services/redirect.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,21 +13,24 @@ export class ToolbarComponent implements OnInit {
   loggedIn = false
   userName = ''
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private redirectService: RedirectService
+  ) { }
 
   ngOnInit() {
-    if (this.authService.isLoggedIn()) {
+    this.authService.isLoggedIn().subscribe(result => {
       this.userName = this.authService.currentUserValue.firstname + ' ' + this.authService.currentUserValue.lastname
-      this.loggedIn = true
-    }
+      this.loggedIn = result
+    })
   }
 
   login() {
-    this.router.navigate(['user', 'login'])
+    this.redirectService.loginPage()
   }
 
   logout() {
     this.authService.logout()
-    this.loggedIn = this.authService.isLoggedIn()
+    this.redirectService.loginPage()
   }
 }

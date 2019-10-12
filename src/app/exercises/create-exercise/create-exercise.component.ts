@@ -30,11 +30,6 @@ export class CreateExerciseComponent implements OnInit {
           if (result === true) {
             this.initNewExercise()
           }
-        },
-        error => {
-          error.error.message.forEach(element => {
-            alert(element.Exercise)
-          });
         }
       )
   }
