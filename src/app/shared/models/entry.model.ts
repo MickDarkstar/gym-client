@@ -1,4 +1,4 @@
-import { EntryDetail } from './entry-detail.model';
+import { EntryDetail } from '@src/app/shared/models/entry-detail.model';
 
 export class Entry {
     entryDetails: EntryDetail[]

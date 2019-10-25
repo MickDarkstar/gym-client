@@ -36,3 +36,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Build for native mobile app
+Run `tns preview` for testing and development
+
+Build prod:
+TBD
+
+More info: https://docs.nativescript.org/angular/code-sharing/migrating-a-web-project 

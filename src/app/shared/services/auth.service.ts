@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core'
 import * as moment from 'moment'
 import { HttpClient } from '@angular/common/http'
-import { User } from '../models/user.model'
+import { User } from '@src/app/shared/models/user.model'
 import { Observable, BehaviorSubject, from } from 'rxjs'
-import { IApiResponse } from '../models/api-response.model';
+import { IApiResponse } from '@src/app/shared/models/api-response.model';
 import { map } from 'rxjs/operators'
 
 @Injectable({

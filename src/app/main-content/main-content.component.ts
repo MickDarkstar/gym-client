@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Exercise } from '../shared/models/exercises/exercise.model';
-import { WorkoutService } from '../shared/services/workout.service';
-import { ExerciseService } from '../shared/services/exercise.service';
+import { Exercise } from '@src/app/shared/models/exercises/exercise.model';
+import { WorkoutService } from '@src/app/shared/services/workout.service';
+import { ExerciseService } from '@src/app/shared/services/exercise.service';
 
 @Component({
   selector: 'app-main-content',

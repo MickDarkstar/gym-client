@@ -2,6 +2,10 @@
   "name": "gym-logger",
   "version": "0.0.0",
   "scripts": {
+    "android": "tns run android",
+    "ios": "tns run ios",
+    "mobile": "tns run",
+    "preview": "tns preview",
     "ng": "ng",
     "start": "ng serve --disable-host-check",
     "build": "ng build",
@@ -11,6 +15,10 @@
   },
   "private": true,
   "dependencies": {
+    "nativescript-angular": "~8.0.1",
+    "nativescript-theme-core": "~1.0.4",
+    "reflect-metadata": "~0.1.12",
+    "tns-core-modules": "~6.0.0",
     "@angular/animations": "~8.0.0",
     "@angular/cdk": "^8.0.0",
     "@angular/common": "~8.0.0",
@@ -22,6 +30,7 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
+    "@nativescript/schematics": "^0.7.2",
     "hammerjs": "^2.0.8",
     "material-design-icons": "^3.0.1",
     "moment": "^2.24.0",
@@ -31,6 +40,9 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
+    "nativescript-dev-webpack": "~1.0.0",
+    "@nativescript/schematics": "~0.7.0",
+    "@nativescript/tslint-rules": "~0.0.2",
     "@angular-devkit/build-angular": "~0.800.0",
     "@angular/cli": "~8.0.0",
     "@angular/compiler-cli": "~8.0.0",
@@ -50,5 +62,11 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
+  },
+  "nativescript": {
+    "id": "org.nativescript.ngsample",
+    "tns-android": {
+      "version": "6.1.2"
+    }
   }
 }

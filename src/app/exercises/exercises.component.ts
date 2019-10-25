@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Exercise } from '../shared/models/exercises/exercise.model';
+import { Exercise } from '@src/app/shared/models/exercises/exercise.model';
 import { Router } from '@angular/router';
-import { ExerciseService } from '../shared/services/exercise.service';
-import { ExerciseDelete } from '../shared/models/exercises/exercise-delete.model';
+import { ExerciseService } from '@src/app/shared/services/exercise.service';
+import { ExerciseDelete } from '@src/app/shared/models/exercises/exercise-delete.model';
 
 @Component({
   selector: 'app-exercises',

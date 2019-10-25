@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "gym-logger"
+  "defaultProject": "gym-logger",
+  "cli": {
+    "defaultCollection": "@nativescript/schematics"
+  }
 }

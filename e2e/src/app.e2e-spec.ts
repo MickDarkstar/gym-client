@@ -1,4 +1,4 @@
-import { AppPage } from './app.po';
+import { AppPage } from 'C:/Users/Mick/Documents/Apps/NativeScript/gym-client-native/e2e/src/app.po';
 import { browser, logging } from 'protractor';
 
 describe('workspace-project App', () => {

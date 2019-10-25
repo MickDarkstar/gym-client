@@ -12,3 +12,8 @@
 	
 Deploya testversion till:
 	- Klient till firebase, sätt releasevariabler genom fulhack bara för att få igång appen
+
+
+Migrera till nativescript
+dev run:
+	tns preview

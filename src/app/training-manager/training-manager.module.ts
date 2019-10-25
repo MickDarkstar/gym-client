@@ -3,26 +3,26 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MaterialModule } from '../shared/modules/material.module';
-import { TrainingManagerComponent } from './training-manager.component';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
-import { MainContentComponent } from '../main-content/main-content.component';
-import { SidenavComponent } from '../sidenav/sidenav.component';
+import { MaterialModule } from '@src/app/shared/modules/material.module';
+import { TrainingManagerComponent } from '@src/app/training-manager/training-manager.component';
+import { ToolbarComponent } from '@src/app/toolbar/toolbar.component';
+import { MainContentComponent } from '@src/app/main-content/main-content.component';
+import { SidenavComponent } from '@src/app/sidenav/sidenav.component';
 import { CommonModule } from '@angular/common';
 
-import { CurrentEntryComponent } from '../entries/current-entry/current-entry.component';
-import { EntryDetailEditComponent } from '../entries/current-entry/entry-detail-edit.component';
-import { CreateExerciseComponent } from '../exercises/create-exercise/create-exercise.component';
+import { CurrentEntryComponent } from '@src/app/entries/current-entry/current-entry.component';
+import { EntryDetailEditComponent } from '@src/app/entries/current-entry/entry-detail-edit.component';
+import { CreateExerciseComponent } from '@src/app/exercises/create-exercise/create-exercise.component';
 
-import { ExercisesComponent } from '../exercises/exercises.component';
-import { EntriesComponent } from '../entries/entries.component';
-import { EditExerciseComponent } from '../exercises/edit-exercise/edit-exercise.component';
-import { AuthGuard } from '../_guards/auth.guards';
-import { EditButtonComponent } from '../shared/components/edit-button/edit-button.component';
-import { AppButtonComponent } from '../shared/components/app-button/app-button.component';
-import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
-import { ConfirmDirective } from '../shared/directives/confirm.directive';
-import { ConfirmButtonComponent } from '../shared/components/delete-button/confirm-button.component';
+import { ExercisesComponent } from '@src/app/exercises/exercises.component';
+import { EntriesComponent } from '@src/app/entries/entries.component';
+import { EditExerciseComponent } from '@src/app/exercises/edit-exercise/edit-exercise.component';
+import { AuthGuard } from '@src/app/_guards/auth.guards';
+import { EditButtonComponent } from '@src/app/shared/components/edit-button/edit-button.component';
+import { AppButtonComponent } from '@src/app/shared/components/app-button/app-button.component';
+import { ConfirmDialogComponent } from '@src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDirective } from '@src/app/shared/directives/confirm.directive';
+import { ConfirmButtonComponent } from '@src/app/shared/components/delete-button/confirm-button.component';
 
 const routes: Routes = [
   {
