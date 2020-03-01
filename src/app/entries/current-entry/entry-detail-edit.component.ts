@@ -21,12 +21,16 @@ export class EntryDetailEditComponent implements OnInit {
   }
 
   save() {
-    this.entryDetail.done = true
+    this.entryDetail.date = new Date();
+    this.output.emit(this.entryDetailToSave)
+  }
+
+  uncheckAndSave() {
+    this.entryDetail.date = null;
     this.output.emit(this.entryDetailToSave)
   }
 
   remove() {
     this.workoutService.deleteEntryDetail(this.entryDetail)
   }
-
 }

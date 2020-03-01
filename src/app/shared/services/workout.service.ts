@@ -72,7 +72,11 @@ export class WorkoutService implements OnDestroy {
       .pipe(
         map(result => {
           if (result.data) {
-            this.toast.success('Nice work hero!', 'Exercise completed')
+            if (entryDetail.date) {
+              this.toast.success('Nice work hero!', 'Exercise completed')
+            } else {
+              this.toast.success('Nice work hero!', 'Exercise marked as "Not done"')
+            }
             return true
           }
           return false

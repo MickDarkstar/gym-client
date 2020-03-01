@@ -30,7 +30,12 @@
     <div class="button-container">
       <confirm-button label="Unqueue" confirmMessage="Ok... skipping exercises are we?"(onClick)="remove()"></confirm-button>
       <span class="spacer"></span>
-      <app-button label="Done" (onClick)="save()"></app-button>
+      <div *ngIf="!entryDetail.date; else markedAsDone">
+        <app-button label="Done" (onClick)="save()"></app-button>
+      </div>
+      <ng-template #markedAsDone>
+        <app-button label="Uncheck" color="accent" (onClick)="uncheckAndSave()"> </app-button>
+      </ng-template>
     </div>
   </mat-card-actions>
 </mat-card>

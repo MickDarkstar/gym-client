@@ -7,6 +7,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class AppButtonComponent {
   @Input() label: string;
+  @Input() color = 'primary';
+
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onClick = new EventEmitter<any>();
 
